@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>最新消息｜晨哥陶藝</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- 內頁使用：固定白底導覽列（直接帶 scrolled） -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top scrolled">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">晨哥陶藝</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item"><a class="nav-link" href="index.html#">首頁</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">全部作品</a></li>
+            <li class="nav-item"><a class="nav-link active" href="news.html">最新消息</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">關於我們</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Instagram</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">YouTube</a></li>
+            <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-search"></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="account.html"><i class="bi bi-person"></i></a></li>
+            <li class="nav-item position-relative">
+              <a class="nav-link" href="cart.html" id="cart-icon">
+                <i class="bi bi-cart"></i>
+                <span id="cart-count" class="cart-badge">0</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container page-padding">
+      <div class="row g-4">
+        <!-- 文章列表 -->
+        <section class="col-lg-9">
+            <!-- 手機 1 欄、≥md 兩欄；想 3 欄可再加 row-cols-xl-3；row-cols 版型（自動一列兩張卡g-2）-->
+            <div id="post-list" class="row row-cols-1 row-cols-md-2 g-2"></div>
+        </section>
+
+        <!-- 側邊欄 -->
+        <aside class="col-lg-3">
+          <div class="mb-4">
+            <h5 class="mb-3">我想要找..</h5>
+            <div class="input-group">
+              <input id="post-search" type="text" class="form-control" placeholder="搜尋文章…" />
+              <button id="post-search-btn" class="btn btn-primary"><i class="bi bi-search"></i></button>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <h5 class="mb-3">文章分類</h5>
+            <div id="post-categories" class="list-group small">
+              <!-- JS 產生分類 -->
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <h5 class="mb-3">近期文章</h5>
+            <div id="recent-posts" class="vstack gap-3 small">
+              <!-- JS 產生近期文章 -->
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="text-center py-4 bg-white border-top mt-5">
+      <small><a href="#">使用條款</a> • <a href="#">隱私政策</a></small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

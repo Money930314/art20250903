@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>您的購物車｜晨哥陶藝</title>
+
+  <!-- Bootstrap / Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- 你的全站樣式（含導覽列透明→捲動變白 / cart-badge 等） -->
+  <link rel="stylesheet" href="style.css">
+  <!-- 本頁最少量補強樣式 -->
+  <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+  <!-- 與其他頁一致的導覽列（透明→捲動變白，相容你的 style.css） -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">晨哥陶藝</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navMain" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html#">首頁</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">全部作品</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">最新消息</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">關於我們</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Instagram</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">YouTube</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-search"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="account.html"><i class="bi bi-person"></i></a></li>
+          <li class="nav-item position-relative">
+            <a class="nav-link" href="cart.html" id="cart-icon">
+              <i class="bi bi-cart"></i>
+              <span id="cart-count" class="cart-badge">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- 背景層：放在 navbar 下、main 上 -->
+<div class="cart-bg" role="img" aria-label="background"></div>
+
+<main class="container page-padding cart-viewport">
+  <h1 class="page-title mb-4">您的購物車</h1>
+
+  <div class="row g-4">
+    <!-- 左側：清單 -->
+    <div class="col-lg-8">
+      <section id="cart-list" class="cart-list-card">
+        <!-- JS 會把每個商品 li 渲染到這裡 -->
+      </section>
+
+      <!-- 空購物車時的占位 -->
+      <div id="empty-state" class="text-center py-5 d-none">
+        <p class="text-white-50 mb-3">購物車是空的。</p>
+        <a class="btn btn-light" href="products.html">去逛逛</a>
+      </div>
+    </div>
+
+    <!-- 右側：小計 -->
+    <aside class="col-lg-4">
+      <div class="cart__summary">
+        <h5 class="mb-3">小計</h5>
+        <div class="d-flex justify-content-between">
+          <span class="text-muted">商品小計</span>
+          <strong id="summary-subtotal">NT$ 0</strong>
+        </div>
+        <p class="text-muted small mt-2">運費、稅額以結帳頁計算</p>
+        <button id="checkout" class="btn btn-dark w-100 mt-3">結帳 →</button>
+      </div>
+    </aside>
+  </div>
+</main>
+
+
+  <footer class="text-center py-4 bg-white border-top mt-5">
+    <small>© 晨哥陶藝</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="cart.js"></script>
+</body>
+</html>

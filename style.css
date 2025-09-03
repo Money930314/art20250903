@@ -1,0 +1,467 @@
+/* -------- Base -------- */
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  margin: 0;
+}
+
+.carousel-img {
+  height: 100vh;           /* 全螢幕高度 */
+  object-fit: cover;
+}
+
+.carousel-caption {
+  bottom: 40%;             /* 文字位置 */
+}
+
+/* -------- Navbar：透明 → 捲動變白 -------- */
+/* 初始：透明背景 */
+.navbar {
+  background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 透明狀態：字體一律白色（品牌、連結、icon） */
+.navbar:not(.scrolled) .navbar-brand,
+.navbar:not(.scrolled) .nav-link,
+.navbar:not(.scrolled) .bi {
+  color: #fff !important;
+}
+
+/* 捲動後：白底黑字，加陰影 */
+.navbar.scrolled {
+  background-color: #fff !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+
+.navbar.scrolled .navbar-brand,
+.navbar.scrolled .nav-link,
+.navbar.scrolled .bi {
+  color: #000 !important;
+}
+
+/* hover 效果（兩種狀態都適用） */
+.navbar .nav-link:hover {
+  opacity: .8;
+}
+
+/* （可選）行動版漢堡按鈕：透明時白、捲動後黑 */
+.navbar .navbar-toggler {
+  border: none;
+}
+.navbar:not(.scrolled) .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar.scrolled .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0,0,0,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* -------- Footer -------- */
+footer a {
+  color: #333;
+  text-decoration: none;
+}
+footer a:hover {
+  color: #000;
+}
+
+/* 內頁上方留白（避開 fixed-top navbar） */
+.page-padding { padding-top: 90px; }
+
+/* 商品卡片小強化 */
+.product-card img { object-fit: cover; height: 180px; }
+.product-card .card-title { font-weight: 600; }
+
+/* 放大 icon */
+.navbar .bi {
+  font-size: 1.4rem;   /* 預設比原本大 */
+}
+
+/* 購物車數量徽章 */
+.cart-badge {
+  position: absolute;
+  top: -1px;
+  right: -4px;
+  background-color: gray;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 5px;
+  line-height: 1;
+  pointer-events: none;     /* ← 這行很重要：徽章不攔截點擊 */
+}
+
+/* -------- news.html -------- */
+/* 文章卡片 */
+.post-card {
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.post-cover {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+.post-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 日期角標（左上） */
+.post-date {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 54px;
+  text-align: center;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  line-height: 1.1;
+  padding: 6px 0;
+  font-weight: 700;
+}
+.post-date .day { font-size: 20px; }
+.post-date .month { font-size: 12px; color: #666; }
+
+/* 分類膠囊 (文章小下面的藍色文字方格)*/
+/* 讓卡片允許元素超出邊界並作為定位參考 */
+.post-card{
+  position: relative;
+  overflow: visible;         /* 很重要：讓膠囊能超出 cover */
+  border-radius: 12px;
+}
+
+/* 圖片容器 */
+.post-cover{
+  position: relative;
+  aspect-ratio: 5/3;         /* 你原本的比例，可自行調整 */
+  overflow: visible;          /* 很重要：讓膠囊能往外 */
+}
+
+/* 分類膠囊：置中，從圖片底邊向下「跨」出去 */
+.post-category{
+  position: absolute;
+  left: 50%;
+  bottom: -12px;             /* 調整跨出去的量（越負 → 越往下）*/
+  transform: translateX(-50%);
+  background: #1f6feb;
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+/* 為了不讓膠囊壓到標題，內文區往下讓出空間 */
+.post-body{
+  padding: 24px;
+  padding-top: 36px;         /* 重點：要比 bottom 的絕對值再多一些 */
+}
+
+/* 文章內容 */
+.post-body { padding: 24px; }
+.post-title { font-weight: 800; margin-bottom: .5rem; }
+.post-excerpt { color: #555; }
+.post-read { font-weight: 700; }
+
+/* 側欄近期文章 */
+.recent-item { display: flex; gap: 10px; }
+.recent-item img {
+  width: 64px; height: 48px; object-fit: cover; border-radius: 6px;
+}
+
+/* -------- about.html -------- */
+/* About 頁面圖片更好看 */
+.about-section img {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* ========== account.html（合併版） ========== */
+/* 仍沿用現有 .navbar / .navbar.scrolled 的規則，帳號頁不用另寫 navbar */
+
+/* 視口與背景（與首頁透明 navbar 相容：背景圖會在 navbar 下方） */
+.auth-viewport{
+  min-height: 100vh; /* 避開 fixed-top，90px 與你現有 .page-padding 一致 */
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.auth-bg{
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(900px 480px at 20% 20%, #ffffff0f, transparent),
+    radial-gradient(900px 480px at 80% 80%, #ffffff10, transparent),
+    url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1600') center/cover no-repeat;
+  filter: grayscale(100%) brightness(.35);
+  z-index: 0;
+}
+
+/* 卡片 */
+.auth-card{
+  position: relative; z-index: 1;
+  width: min(460px, 94vw);
+  background: #212326;           /* 與 account.css 一致（深灰） */
+  border-radius: 24px;
+  padding: 32px 28px 28px;
+  box-shadow: 0 28px 60px rgba(0,0,0,.45);
+}
+
+/* 品牌（已移除綠點，只留文字） */
+.auth-brand{
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+  letter-spacing: .12em;
+  font-weight: 900;
+  color: #f5f6f7;
+  text-rendering: optimizeLegibility;
+}
+
+/* 分頁標籤 */
+.auth-tabs{ display:flex; gap:28px; justify-content:center; margin:6px 0 18px; }
+.auth-tab{
+  background: transparent; border: 0; color: #b7bdc4;
+  font-weight: 800; letter-spacing: .06em; padding: 4px 2px;
+}
+.auth-tab.active{ color: #fff; }
+.auth-tab.active::after{
+  content:""; display:block; height:3px; border-radius:3px; background:#fff; margin-top:6px;
+}
+
+/* 欄位：盡量沿用現有 .form-control，僅在卡片裡做「深色膠囊」差異化 */
+.auth-card .form-control{
+  background: #2b2e32;
+  border: 1px solid #3a3f45;     /* 與 account.css 的 --c-line 對應 */
+  color: #fff;
+  border-radius: 999px;          /* 膠囊外觀 */
+  padding: .9rem 1.1rem;
+}
+.auth-card .form-control::placeholder{ color:#c6ccd2; }
+.auth-card .form-control:focus{
+  background: #30343a;
+  border-color: #6b717a;         /* --c-line-strong 對應 */
+  box-shadow: 0 0 0 .2rem rgba(255,255,255,.12);
+}
+
+/* 主要按鈕：沿用你已經在 style.css 內的 .btn-gray（不重覆宣告） */
+/* 統一全站「登入 / 註冊」按鈕與首頁 slide 的按鈕樣式 */
+.btn-auth {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #000;
+  border-radius: 999px;    /* 膠囊風格 */
+  font-weight: 600;
+  padding: .65rem 1.2rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-auth:hover,
+.btn-auth:focus,
+.btn-auth:active {
+  background-color: #5b5b5b;  /* 淺灰 */
+  border-color: #262728;
+  color: #000;
+}
+
+/* 連結顏色：把 .auth-link 併到你原有的 .forgot-link（共用一組） */
+.forgot-link,
+.auth-link{
+  color: #6c757d !important;
+  text-decoration: none;
+}
+.forgot-link:hover,
+.auth-link:hover{
+  color: #5c636a !important;
+  text-decoration: underline;
+}
+
+/* 驗證錯誤（共用 Bootstrap 類別，顏色同步） */
+.invalid-feedback{ color:#ffb3b3; }
+
+/* 手機導覽列展開 → 做全畫面遮罩，覆蓋內容（含登入卡片） */
+@media (max-width: 991.98px) {
+  .navbar .navbar-collapse {
+    position: fixed;          /* 固定住，不讓內容把它往下推 */
+    top: 56px;                /* 導覽列高度（你的 fixed-top 高度） */
+    left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,.85);  /* 深色+半透明 */
+    z-index: 1050;            /* 高於 .auth-card（你的卡片 z-index:1） */
+    padding: 1.25rem 1rem;
+    overflow-y: auto;         /* 選單過長可捲動 */
+    backdrop-filter: blur(2px);
+  }
+  /* 展開/收起動畫用這兩行避免高度跳動 */
+  .navbar .navbar-collapse.collapsing { height: 100% !important; transition: none; }
+  .navbar .navbar-collapse.show       { height: 100% !important; }
+
+  /* 選單字色與大小（與你透明 navbar 的白字一致） */
+  .navbar .navbar-collapse .nav-link {
+    color: #fff !important;
+    font-size: 1.25rem;
+    text-align: center;
+    padding: .75rem 0;
+  }
+}
+
+/*成效：打開漢堡選單時，整個選單會「蓋在最上面」，底下登入小卡不會跟選單重疊/互搶焦點，看起來就是一個正式的全畫面選單。*/
+body.nav-open { overflow: hidden; }
+
+/* 置中容器：使用 dvh（dynamic viewport height）以避開手機瀏覽器工具列問題 */
+.auth-viewport{
+  min-height: 100dvh;  /* 90px 為你 fixed-top 頂部間距 */
+  display: grid;
+  place-items: center;               /* 水平 + 垂直置中 */
+  position: relative;
+  padding: 16px;                     /* 手機縮小內距，避免貼邊 */
+}
+
+/* 背景圖固定鋪滿：避免底下露白帶 */
+.auth-bg{
+  position: fixed;                   /* 原本若是 absolute 會跟內容一起動，改成 fixed */
+  inset: 0;
+  background:
+    radial-gradient(900px 480px at 20% 20%, #ffffff0f, transparent),
+    radial-gradient(900px 480px at 80% 80%, #ffffff10, transparent),
+    url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1600') center/cover no-repeat;
+  filter: grayscale(100%) brightness(.35);
+  z-index: 0;
+}
+
+/* 小卡在手機寬度下縮得更舒服一些 */
+@media (max-width: 576px){
+  .auth-card{ width: min(92vw, 420px); margin: 0 auto; }
+}
+
+/* 手機展開選單時，強制 icon 與連結為白色（蓋過 .scrolled 的黑色） */
+@media (max-width: 991.98px) {
+  body.nav-open .navbar .bi,
+  body.nav-open .navbar .nav-link {
+    color: #fff !important;
+  }
+}
+
+/* ========== cart.html ========== */
+
+/* 讓右側摘要在桌機黏住視窗，手機自動正常流佈局 */
+.cart-summary {
+  position: sticky;
+  top: 90px;               /* 避開 fixed-top navbar */
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+}
+
+/* 商品卡：用卡片風格展開資訊 */
+.cart-item {
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
+}
+
+.cart-item .thumb {
+  width: 110px;
+  height: 110px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #f5f5f5;
+}
+
+.cart-item .title {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.cart-item .meta {
+  color: #666;
+  font-size: .9rem;
+}
+
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.qty-control button {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: #f6f6f6;
+}
+
+.qty-control input {
+  width: 48px;
+  height: 36px;
+  border: 0;
+  text-align: center;
+  outline: none;
+}
+
+.cart-item .price {
+  font-weight: 700;
+}
+
+
+/* ========== Cart 背景層 ========== */
+.cart-bg{
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(900px 480px at 20% 20%, #ffffff0f, transparent),
+    radial-gradient(900px 480px at 80% 80%, #ffffff10, transparent),
+    /* 你想要的背景圖 */
+    url('data:image/jpeg;base64,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') center/cover no-repeat;
+  filter: grayscale(100%) brightness(.35);   /* 暗一點、字會清楚 */
+  z-index: 0;             /* 最底層 */
+  pointer-events: none;   /* 不要擋住點擊 */
+}
+
+/* 內容層在背景上面 */
+.cart-viewport{
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding-top: 90px;      /* 避開 fixed-top 導覽列 */
+}
+
+/* 左側清單白底卡片 */
+.cart-list-card{
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+/* 單一商品條目（你原本已有的樣式可保留） */
+.cart__item{
+  display: grid;
+  grid-template-columns: 96px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* 右側小計維持白底 */
+.cart__summary{
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  position: sticky;
+  top: 110px;
+}
+
