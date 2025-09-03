@@ -1,24 +1,58 @@
-/* 清單的每一筆商品 */
-.cart-item{
+/* 頁面主體要避開固定導覽列高度 */
+.cart-main {
+  padding-top: 200px; /* 視實際 navbar 高度微調 */
+}
+
+.page-title {
+  color: #fff;
+}
+
+/* 標題白字 */
+.cart-title {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+
+/* 商品清單外框 */
+.cart-list-card {
+  background: rgba(255,255,255,.95);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.08);
+}
+
+/* 每個商品 */
+.cart-item {
   display:flex; gap:16px; align-items:center;
-  padding:16px; border:1px solid rgba(0,0,0,.08); border-radius:12px; background:#fff;
+  padding:16px; border-bottom:1px solid #eee;
+  background:#fff; border-radius:8px;
 }
-.cart-item img{
-  width:92px; height:92px; object-fit:cover; border-radius:10px;
-}
-.cart-item-title{ font-weight:700; }
-.cart-item-price{ font-weight:700; }
+.cart-item img { width:92px; height:92px; object-fit:cover; border-radius:10px; }
+.cart-item-title { font-weight:700; }
+.cart-item-price { font-weight:700; }
 
 /* 數量控制 */
-.qty-box{ display:flex; align-items:center; gap:8px; }
-.qty-btn{
-  width:32px; height:32px; border:1px solid #ced4da; background:#f8f9fa;
-  border-radius:6px; display:grid; place-items:center; cursor:pointer;
+.qty-box { display:flex; align-items:center; gap:8px; }
+.qty-btn {
+  width:32px; height:32px; border:1px solid #ced4da;
+  background:#f8f9fa; border-radius:6px;
+  display:grid; place-items:center; cursor:pointer;
 }
-.qty-input{
-  width:52px; text-align:center; border:1px solid #ced4da; border-radius:6px; height:32px;
+.qty-input {
+  width:52px; text-align:center; border:1px solid #ced4da;
+  border-radius:6px; height:32px;
 }
 
 /* 移除按鈕 */
-.remove-btn{ color:#888; text-decoration:none; }
-.remove-btn:hover{ color:#dc3545; text-decoration:underline; }
+.remove-btn { color:#888; text-decoration:none; }
+.remove-btn:hover { color:#dc3545; text-decoration:underline; }
+
+/* 右側總結卡 */
+.summary-card {
+  background: rgba(255,255,255,.96);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+  position: sticky;
+  top: 120px;
+}
